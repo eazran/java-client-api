@@ -8,9 +8,9 @@
 ## Fork
 
 The original library (version 0.3.8) uses the dependencies:
-commons-beanutils-1.8.0.jar - reported Vulnerabilities: CVE-2014-0114
-commons-collections-3.2.1.jar - reported Vulnerabilities: CVE-2015-6420, CVE-2015-4852, CVE-2015-7501
-jackson-databind-2.3.4.jar - reported Vulnerabilities: CVE-2018-19360, CVE-2018-19361, CVE-2018-19362, CVE-2017-15095, CVE-2018-5968, CVE-2018-7489, CVE-2017-17485, CVE-2017-7525
+* commons-beanutils-1.8.0.jar - reported Vulnerabilities: CVE-2014-0114
+* commons-collections-3.2.1.jar - reported Vulnerabilities: CVE-2015-6420, CVE-2015-4852, CVE-2015-7501
+* jackson-databind-2.3.4.jar - reported Vulnerabilities: CVE-2018-19360, CVE-2018-19361, CVE-2018-19362, CVE-2017-15095, CVE-2018-5968, CVE-2018-7489, CVE-2017-17485, CVE-2017-7525
 
 I am forking this library to update dependencies to resolve security issues
 
