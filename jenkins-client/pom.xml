@@ -11,7 +11,7 @@
   <parent>
     <groupId>com.offbytwo.jenkins</groupId>
     <artifactId>jenkins-client-parent</artifactId>
-    <version>0.3.9-SNAPSHOT</version>
+    <version>0.3.9999-SNAPSHOT</version>
   </parent>
 
   <artifactId>jenkins-client</artifactId>
@@ -48,7 +48,27 @@
       <groupId>net.sf.json-lib</groupId>
       <artifactId>json-lib</artifactId>
       <classifier>jdk15</classifier>
+	  <exclusions>
+        <exclusion>  
+          <groupId>commons-beanutils</groupId>
+          <artifactId>commons-beanutils</artifactId>
+		  <!-- commons-beanutils-1.8.0.jar - reported Vulnerabilities: CVE-2014-0114 -->
+        </exclusion>
+		<exclusion>  
+          <groupId>commons-collections</groupId>
+          <artifactId>commons-collections</artifactId>
+		  <!-- commons-collections-3.2.1.jar - reported Vulnerabilities: CVE-2015-6420, CVE-2015-4852, CVE-2015-7501 -->
+        </exclusion>		
+      </exclusions> 
     </dependency>
+	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>		
+	</dependency>
+	<dependency>
+		<groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>		
+	</dependency>
 
     <!-- Musties -->
     <dependency>
@@ -170,6 +190,29 @@
                   <shadedPattern>com.google.common.jenkins_client_jarjar</shadedPattern>
                 </relocation>
               </relocations>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>dependencies-repository</outputDirectory>
+              <overWriteReleases>true</overWriteReleases>
+              <overWriteSnapshots>ture</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+              <copyPom>true</copyPom>
+              <useRepositoryLayout>true</useRepositoryLayout>
+			  <includeScope>runtime</includeScope>
             </configuration>
           </execution>
         </executions>

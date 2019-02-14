@@ -20,7 +20,7 @@
 
   <groupId>com.offbytwo.jenkins</groupId>
   <artifactId>jenkins-client-parent</artifactId>
-  <version>0.3.9-SNAPSHOT</version>
+  <version>0.3.9999-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <scm>
@@ -60,10 +60,12 @@
     <commons-lang.version>3.8.1</commons-lang.version>
     <guava.version>17.0</guava.version>
     <json-lib.version>2.4</json-lib.version>
+	<commons-beanutils.version>1.9.3</commons-beanutils.version>
+	<commons-collections.version>3.2.2</commons-collections.version>
     <httpclient.version>4.3.6</httpclient.version>
     <httpcore.version>4.3.3</httpcore.version>
     <httpmime.version>4.3.6</httpmime.version>
-    <jackson-databind.version>2.9.6</jackson-databind.version>
+    <jackson-databind.version>2.9.8</jackson-databind.version>
   </properties>
 
   <licenses>
@@ -123,7 +125,29 @@
         <artifactId>json-lib</artifactId>
         <version>${json-lib.version}</version>
         <classifier>jdk15</classifier>
+			  <exclusions>
+				<exclusion>  
+				  <groupId>commons-beanutils</groupId>
+				  <artifactId>commons-beanutils</artifactId>
+				  <!-- commons-beanutils-1.8.0.jar - reported Vulnerabilities: CVE-2014-0114 -->
+				</exclusion>
+				<exclusion>  
+				  <groupId>commons-collections</groupId>
+				  <artifactId>commons-collections</artifactId>
+				  <!-- commons-collections-3.2.1.jar - reported Vulnerabilities: CVE-2015-6420, CVE-2015-4852, CVE-2015-7501 -->
+				</exclusion>		
+			  </exclusions> 
       </dependency>
+	  	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>
+		<version>${commons-beanutils.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-collections</groupId>
+        <artifactId>commons-collections</artifactId>
+		<version>${commons-collections.version}</version>
+	</dependency>
 
       <!-- Musties -->
       <dependency>
@@ -498,8 +522,7 @@
   </repositories>
 
   <modules>
-    <module>jenkins-client</module>
-    <module>jenkins-client-it-docker</module>
+    <module>jenkins-client</module>    
   </modules>
 
 </project>
